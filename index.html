@@ -1,63 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doação Oficial de Contas Raras Free Fire - Edição Elite 2026</title>
-    
-    <!-- Tailwind CSS -->
+    <title>Sistema de Resgate | Portfólio Interactive Mockup</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- Fontes Google Inter, Plus Jakarta Sans e JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        cyberPurple: '#9333EA',
-                        neonCyan: '#00F0FF',
-                        hyperPink: '#FF007F',
-                        emeraldNeon: '#00FF66',
-                        goldElite: '#FFD700',
-                        deepVoid: '#02040A',
-                        cardGlass: 'rgba(10, 15, 30, 0.85)'
-                    },
                     fontFamily: {
-                        heading: ['Outfit', 'sans-serif'],
-                        tech: ['Space Grotesk', 'sans-serif'],
-                        body: ['Plus Jakarta Sans', 'sans-serif']
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
                     },
-                    animation: {
-                        'float-slow': 'floatSlow 6s ease-in-out infinite',
-                        'glow-pulse': 'glowPulse 2.5s infinite alternate',
-                        'shimmer': 'shimmer 2.5s infinite',
-                        'border-flow': 'borderFlow 4s linear infinite',
-                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    colors: {
+                        brand: {
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        emeraldGlow: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                        },
                     },
-                    keyframes: {
-                        floatSlow: {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-12px) rotate(0.8deg)' }
-                        },
-                        glowPulse: {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.2)' },
-                            '100%': { boxShadow: '0 0 45px rgba(255, 0, 127, 0.7), inset 0 0 25px rgba(255, 0, 127, 0.4)' }
-                        },
-                        shimmer: {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(200%)' }
-                        },
-                        borderFlow: {
-                            '0%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                            '100%': { backgroundPosition: '0% 50%' }
-                        }
+                    boxShadow: {
+                        'neon-blue': '0 0 35px -5px rgba(59, 130, 246, 0.6), 0 0 15px -3px rgba(59, 130, 246, 0.35)',
+                        'neon-green': '0 0 35px -5px rgba(16, 185, 129, 0.65), 0 0 15px -3px rgba(16, 185, 129, 0.4)',
+                        'card-glow': '0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px 2px rgba(59, 130, 246, 0.2)',
                     }
                 }
             }
@@ -65,661 +48,687 @@
     </script>
 
     <style>
+        /* Estilos Globais Dark Premium */
         body {
-            background-color: #02040A;
-            background-image: 
-                radial-gradient(circle at 10% 15%, rgba(147, 51, 234, 0.28), transparent 45%),
-                radial-gradient(circle at 90% 85%, rgba(0, 240, 255, 0.22), transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(255, 0, 127, 0.18), transparent 55%),
-                linear-gradient(to bottom, #02040A, #070B19);
-            background-attachment: fixed;
+            background-color: #02050e;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(13, 20, 38, 0.9) 0%, rgba(8, 12, 24, 0.95) 100%);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        /* Canvas de Fundo Cyber Grid */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #00F0FF 0%, #9333EA 50%, #FF007F 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Card Principal com Glassmorphism Ultrafino */
+        .glass-card {
+            background: linear-gradient(165deg, rgba(13, 22, 42, 0.88) 0%, rgba(5, 10, 22, 0.96) 100%);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
         }
 
-        .btn-elite {
+        /* Borda Neon Animada da Imagem */
+        .glow-border {
             position: relative;
-            background: linear-gradient(135deg, #9333EA 0%, #FF007F 100%);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 1rem;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
+            border-radius: 1.25rem;
+            z-index: 1;
         }
-        .btn-elite:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(255, 0, 127, 0.6);
-            filter: brightness(1.15);
-        }
-
-        .card-tilt {
-            transform-style: preserve-3d;
-            perspective: 1200px;
-            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s, box-shadow 0.4s;
+        .glow-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 1.35rem;
+            background: linear-gradient(90deg, #3b82f6, #10b981, #8b5cf6, #3b82f6);
+            background-size: 300% 300%;
+            z-index: -1;
+            opacity: 0.9;
+            filter: blur(10px);
+            animation: gradientBorder 4s linear infinite;
         }
 
-        .censored-blur {
-            filter: blur(7px);
-            user-select: none;
-            background: linear-gradient(90deg, #00F0FF, #9333EA, #FF007F);
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Transição Fluida entre Telas */
+        .screen-step {
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .screen-hidden {
+            opacity: 0;
+            transform: translateY(20px) scale(0.96);
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .screen-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+            position: relative;
+            width: 100%;
+        }
+
+        /* Efeito Shine Reflexivo nos Botões */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { left: -60%; }
+            25% { left: 140%; }
+            100% { left: 140%; }
+        }
+
+        /* Texto Dourado em Gradiente */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #ffffff 0%, #fde047 50%, #eab308 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 3px;
         }
 
-        ::-webkit-scrollbar {
+        /* Animações Entrada Fade-Up */
+        .animate-fade-up {
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efeito de Radar Holográfico Futurista */
+        .radar-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(15, 23, 42, 0.8) 0%, rgba(2, 6, 23, 0.95) 100%);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.25), inset 0 0 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .radar-sweep {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, rgba(59, 130, 246, 0.4) 0deg, rgba(16, 185, 129, 0.2) 60deg, transparent 60deg, transparent 360deg);
+            animation: spin 2.2s linear infinite;
+        }
+
+        .radar-ring-1 {
+            position: absolute;
+            inset: 15px;
+            border-radius: 50%;
+            border: 1px dashed rgba(16, 185, 129, 0.4);
+            animation: spinReverse 6s linear infinite;
+        }
+
+        .radar-ring-2 {
+            position: absolute;
+            inset: 35px;
+            border-radius: 50%;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .radar-crosshair-v {
+            position: absolute;
+            top: 0; bottom: 0; left: 50%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .radar-crosshair-h {
+            position: absolute;
+            left: 0; right: 0; top: 50%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes spinReverse {
+            100% { transform: rotate(-360deg); }
+        }
+
+        /* Blip de Alvo Encontrado no Radar */
+        .radar-blip {
+            position: absolute;
             width: 10px;
+            height: 10px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #34d399;
+            animation: pulseBlip 1.5s infinite ease-in-out;
         }
-        ::-webkit-scrollbar-track {
-            background: #02040A;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #9333EA, #00F0FF);
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #FF007F;
+        @keyframes pulseBlip {
+            0%, 100% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(1.4); opacity: 1; }
         }
     </style>
 </head>
-<body class="text-slate-100 font-body min-h-screen flex flex-col justify-between selection:bg-neonCyan selection:text-slate-950 relative overflow-x-hidden">
+<body class="flex flex-col justify-between items-center relative p-4 md:p-8 select-none min-h-screen">
 
-    <!-- Fundo Interativo em Canvas -->
-    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
+    <!-- Canvas de Fundo Dinâmico (Grid + Orbes Flutuantes de acordo com o mockup fornecido) -->
+    <canvas id="bgCanvas"></canvas>
 
-    <!-- Top Status Bar -->
-    <div class="fixed top-4 right-4 z-50 flex items-center gap-3">
-        <button onclick="toggleAudio()" id="audioToggleBtn" class="bg-slate-900/90 border border-cyan-500/40 text-cyan-400 p-2.5 rounded-full text-xs font-tech backdrop-blur-md shadow-xl hover:scale-110 transition-transform flex items-center justify-center w-10 h-10 group" title="Ativar/Desativar Efeitos Sonoros">
-            <i class="fa-solid fa-volume-high group-hover:animate-bounce"></i>
-        </button>
-        <div class="hidden sm:flex items-center gap-2.5 bg-slate-900/90 border border-emerald-500/40 text-emerald-400 px-4 py-2 rounded-full text-xs font-tech backdrop-blur-md shadow-2xl">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>SERVIDOR BR &bull; <strong>9ms</strong> &bull; <strong class="text-cyan-400">ONLINE</strong></span>
+    <!-- Header Minimalista -->
+    <header class="w-full max-w-md mx-auto flex items-center justify-center py-3.5 z-10">
+        <div class="flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-amber-500/30 backdrop-blur-md shadow-lg">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-heading font-extrabold text-xs tracking-wider text-gray-200 uppercase">
+                RESGATE <span class="text-amber-400">CONTA FREE FIRE</span>
+            </span>
         </div>
-    </div>
+    </header>
 
-    <!-- Ticker Banner de Anúncio -->
-    <div class="relative z-20 bg-gradient-to-r from-cyberPurple via-hyperPink to-neonCyan text-slate-950 font-black text-xs md:text-sm py-3 px-4 text-center shadow-2xl flex items-center justify-center gap-3 tracking-wider overflow-hidden">
-        <div class="absolute inset-0 bg-white/25 -skew-x-12 animate-shimmer pointer-events-none"></div>
-        <i class="fa-solid fa-crown text-amber-200 text-base animate-bounce"></i>
-        <span class="font-heading uppercase tracking-widest text-white drop-shadow-md">
-            EVENTO GLOBAL 2026 &bull; <span class="underline decoration-amber-300">2.500 CONTAS RARAS DE ELITE</span> LIBERADAS PARA RESGATE IMEDIATO!
-        </span>
-        <i class="fa-solid fa-bolt text-amber-200 text-base animate-pulse"></i>
-    </div>
-
-    <main class="relative z-10 max-w-7xl mx-auto w-full p-4 md:p-8 my-auto space-y-14">
-
-        <!-- ETAPA 1: SELEÇÃO DE CONTAS -->
-        <section id="step1" class="space-y-10 text-center transition-all duration-500">
+    <!-- Container Principal do Fluxo -->
+    <main class="w-full max-w-md mx-auto my-auto py-2 z-10 relative">
+        <div class="glass-card rounded-3xl p-6 relative overflow-hidden min-h-[460px] flex flex-col justify-center">
             
-            <div class="space-y-6 pt-4">
-                <div class="inline-flex items-center gap-3 bg-slate-900/90 border border-neonCyan/60 rounded-full px-6 py-2.5 text-xs text-neonCyan font-tech tracking-widest uppercase backdrop-blur-md shadow-2xl animate-glow-pulse">
-                    <i class="fa-solid fa-shield-halved text-emerald-400 text-sm"></i>
-                    <span class="font-bold">SISTEMA ANTI-BOT &bull; 100% VERIFICADO</span>
+            <!-- TELA 1: INÍCIO -->
+            <section id="step1" class="screen-step screen-visible flex flex-col items-center text-center">
+                
+                <!-- Selo Topo -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/35 text-amber-400 text-xs font-bold tracking-widest uppercase mb-7 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                    SISTEMA DE ENTREGA FF VIP
                 </div>
 
-                <h1 class="text-4xl sm:text-7xl lg:text-8xl font-heading font-black tracking-wider uppercase gradient-text leading-tight drop-shadow-2xl">
-                    DOAÇÃO DE CONTAS FF
+                <!-- Ícone da Chave com Moldura Neon Glowing -->
+                <div class="relative mb-7">
+                    <div class="absolute -inset-3 rounded-3xl bg-amber-500/25 blur-xl animate-pulse"></div>
+                    <div class="relative w-24 h-24 rounded-3xl bg-slate-900/90 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-neon-blue transform hover:scale-105 transition-all duration-300">
+                        <svg class="w-12 h-12 text-amber-400 drop-shadow-[0_0_10px_rgba(245,158,11,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 0121 9z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Título Central Gamer -->
+                <h1 class="font-heading font-extrabold text-xl md:text-2xl text-white tracking-tight uppercase leading-snug mb-8">
+                    RESGATE SUA CONTA GEMADA CLICANDO ABAIXO
                 </h1>
+
+                <!-- Botão Principal com Glow Neon -->
+                <button id="btnStart" onclick="startSearch()" class="btn-shine w-full py-5 px-6 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-600 hover:from-amber-400 hover:to-orange-500 text-white font-heading font-extrabold text-base md:text-lg tracking-wide shadow-[0_0_30px_rgba(245,158,11,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0.5 active:scale-95 flex items-center justify-center gap-3 cursor-pointer mb-6">
+                    <svg class="w-5 h-5 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    <span>RESGATAR MINHA CONTA FF</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </button>
+
+                <!-- Cards de Rodapé -->
+                <div class="grid grid-cols-2 gap-3 w-full text-xs text-gray-300 font-medium">
+                    <div class="flex items-center justify-center gap-2 p-3 rounded-xl bg-slate-900/80 border border-white/10 shadow-inner">
+                        <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span>Entrega via WhatsApp/Email</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 p-3 rounded-xl bg-slate-900/80 border border-white/10 shadow-inner">
+                        <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>Acesso 100% Garantido</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TELA 2: LOADING FUTURISTA -->
+            <section id="step2" class="screen-step screen-hidden flex flex-col items-center text-center py-4">
                 
-                <p class="text-slate-300 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto font-medium leading-relaxed">
-                    Influenciadores e jogadores profissionais estão doando contas com passes raros históricos, calças angelicais e armas evolutivas max. Escolha uma das contas abaixo e resgate agora de forma <strong class="text-amber-400 font-extrabold underline decoration-neonCyan">100% gratuita</strong>.
+                <!-- Radar Holográfico Tático Sci-Fi -->
+                <div class="radar-container mb-6 relative flex items-center justify-center">
+                    <div class="radar-sweep"></div>
+                    <div class="radar-ring-1"></div>
+                    <div class="radar-ring-2"></div>
+                    <div class="radar-crosshair-v"></div>
+                    <div class="radar-crosshair-h"></div>
+
+                    <div class="radar-blip" style="top: 30%; left: 65%;"></div>
+                    <div class="radar-blip" style="top: 70%; left: 35%; animation-delay: 0.5s;"></div>
+                    <div class="radar-blip" style="top: 45%; left: 25%; animation-delay: 0.9s;"></div>
+
+                    <div class="z-10 flex flex-col items-center">
+                        <span id="loadPercent" class="font-heading font-black text-3xl text-white drop-shadow-[0_0_12px_rgba(59,130,246,0.9)]">0%</span>
+                        <span class="text-[10px] font-mono tracking-widest text-emerald-400 uppercase font-semibold">BUSCANDO</span>
+                    </div>
+                </div>
+
+                <p class="font-heading text-lg font-bold text-gray-100 mb-2 tracking-wide flex items-center gap-1">
+                    buscando conta FF no estoque<span class="inline-flex animate-bounce text-amber-400">...</span>
                 </p>
 
-                <!-- Stock Counter & Timer Box -->
-                <div class="max-w-3xl mx-auto glass-panel p-6 sm:p-8 rounded-3xl space-y-5 shadow-2xl relative overflow-hidden group">
-                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-neonCyan/10 rounded-full blur-3xl pointer-events-none"></div>
-                    <div class="absolute -left-10 -top-10 w-40 h-40 bg-hyperPink/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-heading font-bold">
-                        <span class="text-amber-300 flex items-center gap-2 text-sm sm:text-base">
-                            <i class="fa-solid fa-fire text-hyperPink animate-bounce text-lg"></i> LOTE ATUAL DISPONÍVEL NO SISTEMA:
-                        </span>
-                        <div class="flex items-center gap-3">
-                            <span class="text-hyperPink font-tech text-sm sm:text-base bg-hyperPink/10 px-4 py-1.5 rounded-2xl border border-hyperPink/50 shadow-inner">APENAS <span id="stockCount" class="font-black text-white text-lg">3</span> RESTANTES</span>
-                            <span class="text-neonCyan font-tech text-sm sm:text-base bg-neonCyan/10 px-4 py-1.5 rounded-2xl border border-neonCyan/50 shadow-inner" id="countdownTimer">04:58</span>
-                        </div>
-                    </div>
-
-                    <div class="w-full bg-slate-950 rounded-full h-5 p-1 border border-cyan-500/40 overflow-hidden shadow-inner">
-                        <div class="bg-gradient-to-r from-cyberPurple via-hyperPink to-neonCyan h-full rounded-full w-[92%] animate-pulse"></div>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-slate-300 font-tech gap-2">
-                        <span><i class="fa-solid fa-circle-check text-emerald-400 mr-1 text-sm"></i> 2.497 contas entregues com sucesso hoje</span>
-                        <span class="text-amber-400 font-bold bg-amber-500/10 px-3 py-1 rounded-xl border border-amber-500/30">92% DO LOTE ESGOTADO</span>
-                    </div>
+                <div class="w-full bg-slate-950/90 rounded-xl p-2.5 border border-amber-500/30 mb-5 text-left font-mono text-xs text-amber-300/90 shadow-inner flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
+                    <span id="statusConsole" class="truncate">Conectando aos servidores do Free Fire...</span>
                 </div>
 
-                <!-- Filters -->
-                <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
-                    <button onclick="filterAccounts('all', event)" class="filter-btn active bg-gradient-to-r from-cyberPurple to-hyperPink text-white font-heading text-xs sm:text-sm font-bold px-6 py-3 rounded-2xl transition-all shadow-xl shadow-cyberPurple/30 flex items-center gap-2 hover:scale-105">
-                        <i class="fa-solid fa-border-all"></i> TODAS AS CONTAS
-                    </button>
-                    <button onclick="filterAccounts('angelical', event)" class="filter-btn bg-slate-900/95 hover:bg-slate-800 text-cyan-300 border border-cyan-500/40 font-heading text-xs sm:text-sm font-bold px-6 py-3 rounded-2xl transition-all flex items-center gap-2 hover:scale-105">
-                        <i class="fa-solid fa-gem"></i> ANGELICAIS
-                    </button>
-                    <button onclick="filterAccounts('desafiante', event)" class="filter-btn bg-slate-900/95 hover:bg-slate-800 text-pink-300 border border-pink-500/40 font-heading text-xs sm:text-sm font-bold px-6 py-3 rounded-2xl transition-all flex items-center gap-2 hover:scale-105">
-                        <i class="fa-solid fa-trophy"></i> DESAFIANTE
-                    </button>
-                    <button onclick="filterAccounts('passe', event)" class="filter-btn bg-slate-900/95 hover:bg-slate-800 text-amber-300 border border-amber-500/40 font-heading text-xs sm:text-sm font-bold px-6 py-3 rounded-2xl transition-all flex items-center gap-2 hover:scale-105">
-                        <i class="fa-solid fa-crown"></i> SEASON 1
-                    </button>
+                <div class="w-full bg-slate-950 rounded-full h-4 overflow-hidden p-0.5 border border-white/20 shadow-inner mb-2 relative">
+                    <div id="progressBar" class="bg-gradient-to-r from-amber-500 via-orange-500 to-emerald-400 h-full rounded-full w-0 transition-all duration-[4200ms] ease-out shadow-neon-blue relative">
+                        <div class="absolute right-0 top-0 bottom-0 w-2 bg-white rounded-full shadow-[0_0_10px_#fff]"></div>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- ACCOUNTS GRID -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto text-left" id="accountsContainer">
+            <!-- TELA 3: RESULTADO GAMER FREE FIRE -->
+            <section id="step3" class="screen-step screen-hidden flex flex-col items-center text-center">
                 
-                <!-- ACCOUNT 1 -->
-                <div class="account-card card-tilt glass-panel border-2 border-hyperPink/50 rounded-3xl p-6 hover:border-neonCyan transition-all duration-400 relative overflow-hidden flex flex-col justify-between group shadow-2xl" data-category="desafiante passe">
-                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-hyperPink/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                    
-                    <div class="absolute top-4 right-4 z-10 bg-gradient-to-r from-hyperPink to-cyberPurple text-white font-heading font-black text-xs px-4 py-1.5 rounded-full uppercase shadow-xl flex items-center gap-2 border border-white/20">
-                        <i class="fa-solid fa-trophy text-amber-300"></i> Desafiante Lvl 72
+                <!-- Selo de Status -->
+                <div class="animate-fade-up w-full flex justify-center mb-4">
+                    <div class="w-full py-2.5 px-4 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-neon-green">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        STATUS: CONTA FREE FIRE ENCONTRADA & RESERVADA
                     </div>
+                </div>
 
-                    <div class="space-y-6">
-                        <div class="relative aspect-video w-full rounded-2xl overflow-hidden border border-hyperPink/40 bg-slate-950 group shadow-inner">
-                            <img src="conta1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x450/0b1021/ff007f?text=CONTA+PASSE+SEASON+1';" alt="Conta Gemada VIP" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                            
-                            <div class="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-                                <span class="bg-slate-900/95 text-neonCyan border border-neonCyan/50 text-xs font-bold px-3.5 py-1.5 rounded-xl font-heading flex items-center gap-1.5 shadow-lg">
-                                    <i class="fa-solid fa-gem text-neonCyan animate-pulse"></i> 0 Diams
-                                </span>
-                                <span class="bg-emerald-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-xl font-heading shadow-lg shadow-emerald-500/40">
-                                    100% GRÁTIS
-                                </span>
+                <!-- Título -->
+                <h2 class="animate-fade-up font-heading font-black text-xl md:text-2xl text-gradient-gold uppercase tracking-tight mb-5" style="animation-delay: 0.1s;">
+                    🎉 SUA CONTA FF ESTÁ PRONTA!
+                </h2>
+
+                <!-- Imagem com Borda Neon -->
+                <div class="animate-fade-up w-full mb-5 glow-border overflow-hidden" style="animation-delay: 0.2s;">
+                    <div class="rounded-xl overflow-hidden bg-slate-950 p-1">
+                        <img id="accountImg" src="conta.jpg" 
+                             alt="Prévia da Conta Free Fire" 
+                             style="max-width: 100%; border-radius: 10px;" 
+                             class="w-full h-auto object-cover block mx-auto transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x350/0f172a/f59e0b?text=CONTA+FREE+FIRE+VIP\n(Imagem:+conta.jpg)';"
+                        />
+                    </div>
+                </div>
+
+                <!-- Card de Informações do Resgate de Conta FF -->
+                <div class="animate-fade-up w-full mb-6" style="animation-delay: 0.3s;">
+                    <div class="p-4 md:p-5 rounded-2xl bg-slate-900/95 border border-amber-500/40 shadow-xl text-left">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3.5">
+                            <span class="text-sm md:text-base font-heading font-extrabold text-amber-400 uppercase tracking-wide flex items-center gap-2">
+                                ⚠️ AVISO
+                            </span>
+                            <span class="text-[10px] md:text-xs font-bold text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded-full border border-emerald-500/40 shadow-sm">
+                                LOGIN PRONTO
+                            </span>
+                        </div>
+                        
+                        <p class="text-gray-100 text-sm md:text-base leading-relaxed mb-4 font-medium">
+                            Sua conta de Free Fire com <strong class="text-amber-300 font-bold">skins VIP e passe de elite</strong> foi selecionada! Para receber o <strong class="text-emerald-400 font-bold">login e senha imediatamente</strong>, confirme a taxa de envio:
+                        </p>
+
+                        <!-- Tabela de Itens de Checkout FF -->
+                        <div class="bg-slate-950/90 rounded-2xl p-3.5 border border-amber-500/30 space-y-2.5 mb-4 shadow-inner">
+                            <div class="flex justify-between items-center text-xs md:text-sm text-gray-100 font-semibold">
+                                <span>• Login (Google / Facebook):</span>
+                                <span class="font-bold text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded-lg border border-emerald-500/40 text-[10px] md:text-xs">DISPONÍVEL</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs md:text-sm text-gray-100 font-semibold">
+                                <span>• Skins VIP & Passe de Élite:</span>
+                                <span class="font-bold text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded-lg border border-emerald-500/40 text-[10px] md:text-xs">VERIFICADO</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs md:text-sm text-gray-100 font-semibold">
+                                <span>• Suporte para Troca de Senha:</span>
+                                <span class="font-bold text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded-lg border border-emerald-500/40 text-[10px] md:text-xs">INCLUSO</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-2.5 border-t border-white/20">
+                                <span class="font-extrabold text-xs md:text-sm text-white">Taxa de Envio Única:</span>
+                                <span class="font-black text-base md:text-lg text-amber-300 bg-amber-500/25 px-2.5 py-0.5 rounded-xl border border-amber-400/60 shadow-[0_0_15px_rgba(245,158,11,0.3)]">R$ 5,99</span>
                             </div>
                         </div>
 
-                        <div class="space-y-2">
-                            <h3 class="text-xl font-heading font-bold text-slate-100 group-hover:text-neonCyan transition-colors">
-                                Conta Gemada Season 1 + Bandeirão
-                            </h3>
-                            <p class="text-xs text-slate-400 flex items-center gap-2 font-tech">
-                                <span><i class="fa-solid fa-user-circle text-hyperPink"></i> Doador: @LoboDev_Official</span>
-                                <span>&bull; Coleção 100% Rara</span>
-                            </p>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-slate-900/90 text-amber-300 px-3.5 py-1.5 rounded-xl border border-amber-500/40 font-medium">Passe 1ª Temporada</span>
-                            <span class="bg-slate-900/90 text-purple-300 px-3.5 py-1.5 rounded-xl border border-purple-500/40 font-medium">Emote do Bandeirão</span>
-                            <span class="bg-slate-900/90 text-pink-300 px-3.5 py-1.5 rounded-xl border border-pink-500/40 font-medium">M1887 Punho de Fogo</span>
+                        <!-- Aviso Destacado -->
+                        <div class="flex items-center gap-2 text-xs text-emerald-300 bg-emerald-950/50 p-3 rounded-xl border border-emerald-500/40">
+                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            <span class="font-bold">Envio imediato do login e senha logo após a confirmação.</span>
                         </div>
                     </div>
+                </div>
 
-                    <button onclick="claimAccount('Conta Gemada Season 1 + Bandeirão', 'conta1.jpg', 'https://placehold.co/800x450/0b1021/ff007f?text=CONTA+PASSE+SEASON+1')" onmouseenter="playHoverSound()" class="mt-8 w-full py-4 px-4 btn-elite text-white font-heading font-black text-xs md:text-sm tracking-wider uppercase shadow-2xl flex items-center justify-center gap-3 relative overflow-hidden group">
-                        <span class="absolute inset-0 bg-white/25 -skew-x-12 animate-shimmer pointer-events-none"></span>
-                        <i class="fa-solid fa-bolt text-lg text-amber-300"></i>
-                        <span>RESGATAR ESTA CONTA GRÁTIS</span>
+                <!-- Botão Profissional Gamer -->
+                <div class="animate-fade-up w-full" style="animation-delay: 0.4s;">
+                    <button onclick="triggerFinalAction()" class="btn-shine w-full py-5 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-heading font-extrabold text-base md:text-lg tracking-wide shadow-neon-green transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0.5 active:scale-95 flex items-center justify-center gap-3 cursor-pointer">
+                        <span>LIBERAR LOGIN DA CONTA (R$ 5,99)</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
                     </button>
                 </div>
+            </section>
 
-                <!-- ACCOUNT 2 -->
-                <div class="account-card card-tilt glass-panel border-2 border-emerald-500/50 rounded-3xl p-6 hover:border-neonCyan transition-all duration-400 relative overflow-hidden flex flex-col justify-between group shadow-2xl" data-category="angelical">
-                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-
-                    <div class="absolute top-4 right-4 z-10 bg-gradient-to-r from-emerald-600 to-cyan-500 text-white font-heading font-black text-xs px-4 py-1.5 rounded-full uppercase shadow-xl flex items-center gap-2 border border-white/20">
-                        <i class="fa-solid fa-crown text-amber-300"></i> Mestre Lvl 84
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="relative aspect-video w-full rounded-2xl overflow-hidden border border-emerald-500/40 bg-slate-950 group shadow-inner">
-                            <img src="conta2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x450/0b1021/00ff66?text=CONTA+ANGELICAL+VERMELHA';" alt="Conta Angelical Vermelha" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                            
-                            <div class="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-                                <span class="bg-slate-900/95 text-neonCyan border border-neonCyan/50 text-xs font-bold px-3.5 py-1.5 rounded-xl font-heading flex items-center gap-1.5 shadow-lg">
-                                    <i class="fa-solid fa-gem text-neonCyan animate-pulse"></i> 0 Diams
-                                </span>
-                                <span class="bg-emerald-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-xl font-heading shadow-lg shadow-emerald-500/40">
-                                    100% GRÁTIS
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <h3 class="text-xl font-heading font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
-                                Conta Angelical Vermelha + Dunk Master
-                            </h3>
-                            <p class="text-xs text-slate-400 flex items-center gap-2 font-tech">
-                                <span><i class="fa-solid fa-user-circle text-emerald-400"></i> Doador: @LoboDev_Official</span>
-                                <span>&bull; Armas Evolutivas Max</span>
-                            </p>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-slate-900/90 text-rose-300 px-3.5 py-1.5 rounded-xl border border-rose-500/40 font-medium">Angelical Vermelha</span>
-                            <span class="bg-slate-900/90 text-purple-300 px-3.5 py-1.5 rounded-xl border border-purple-500/40 font-medium">Dunk Master Original</span>
-                            <span class="bg-slate-900/90 text-cyan-300 px-3.5 py-1.5 rounded-xl border border-cyan-500/40 font-medium">MP40 Cobra Max</span>
-                        </div>
-                    </div>
-
-                    <button onclick="claimAccount('Conta Angelical Vermelha + Dunk Master', 'conta2.jpg', 'https://placehold.co/800x450/0b1021/00ff66?text=CONTA+ANGELICAL+VERMELHA')" onmouseenter="playHoverSound()" class="mt-8 w-full py-4 px-4 btn-elite text-white font-heading font-black text-xs md:text-sm tracking-wider uppercase shadow-2xl flex items-center justify-center gap-3 relative overflow-hidden group">
-                        <span class="absolute inset-0 bg-white/25 -skew-x-12 animate-shimmer pointer-events-none"></span>
-                        <i class="fa-solid fa-fire text-lg text-amber-300"></i>
-                        <span>RESGATAR ESTA CONTA GRÁTIS</span>
-                    </button>
-                </div>
-
-                <!-- ACCOUNT 3 -->
-                <div class="account-card card-tilt glass-panel border-2 border-amber-500/50 rounded-3xl p-6 hover:border-neonCyan transition-all duration-400 relative overflow-hidden flex flex-col justify-between group shadow-2xl" data-category="desafiante">
-                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-amber-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-
-                    <div class="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-500 to-hyperPink text-slate-950 font-heading font-black text-xs px-4 py-1.5 rounded-full uppercase shadow-xl flex items-center gap-2 border border-white/25">
-                        <i class="fa-solid fa-dragon text-slate-950"></i> Desafiante Lvl 82
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="relative aspect-video w-full rounded-2xl overflow-hidden border border-amber-500/40 bg-slate-950 group shadow-inner">
-                            <img src="conta3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x450/0b1021/ffd700?text=CONTA+TOP+CRIMINAL+VERMELHO';" alt="Conta Top Criminal" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                            
-                            <div class="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-                                <span class="bg-slate-900/95 text-neonCyan border border-neonCyan/50 text-xs font-bold px-3.5 py-1.5 rounded-xl font-heading flex items-center gap-1.5 shadow-lg">
-                                    <i class="fa-solid fa-gem text-neonCyan animate-pulse"></i> 9 Diams
-                                </span>
-                                <span class="bg-emerald-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-xl font-heading shadow-lg shadow-emerald-500/40">
-                                    100% GRÁTIS
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <h3 class="text-xl font-heading font-bold text-slate-100 group-hover:text-amber-400 transition-colors">
-                                Conta Top Criminal Vermelho + Sombra Roxa
-                            </h3>
-                            <p class="text-xs text-slate-400 flex items-center gap-2 font-tech">
-                                <span><i class="fa-solid fa-user-circle text-amber-400"></i> Doador: @LoboDev_Official</span>
-                                <span>&bull; Coleção Rara VIP</span>
-                            </p>
-                        </div>
-
-                        <div class="flex flex-wrap gap-2 text-xs">
-                            <span class="bg-slate-900/90 text-amber-300 px-3.5 py-1.5 rounded-xl border border-amber-500/40 font-medium">Top Criminal Vermelho</span>
-                            <span class="bg-slate-900/90 text-purple-300 px-3.5 py-1.5 rounded-xl border border-purple-500/40 font-medium">Sombra Roxa Antigo</span>
-                            <span class="bg-slate-900/90 text-pink-300 px-3.5 py-1.5 rounded-xl border border-pink-500/40 font-medium">Scar Megalodonte</span>
-                        </div>
-                    </div>
-
-                    <button onclick="claimAccount('Conta Top Criminal Vermelho', 'conta3.jpg', 'https://placehold.co/800x450/0b1021/ffd700?text=CONTA+TOP+CRIMINAL+VERMELHO')" onmouseenter="playHoverSound()" class="mt-8 w-full py-4 px-4 btn-elite text-white font-heading font-black text-xs md:text-sm tracking-wider uppercase shadow-2xl flex items-center justify-center gap-3 relative overflow-hidden group">
-                        <span class="absolute inset-0 bg-white/25 -skew-x-12 animate-shimmer pointer-events-none"></span>
-                        <i class="fa-solid fa-crown text-lg text-amber-300"></i>
-                        <span>RESGATAR ESTA CONTA GRÁTIS</span>
-                    </button>
-                </div>
-
-            </div>
-
-            <!-- Social Feed Toast Box -->
-            <div class="max-w-xl mx-auto glass-panel p-6 rounded-3xl text-xs space-y-4 shadow-2xl border border-cyberPurple/40">
-                <p class="text-emerald-400 font-heading uppercase tracking-widest font-bold text-xs text-center flex items-center justify-center gap-2.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                    ÚLTIMOS RESGATES CONFIRMADOS AO VIVO NO BRASIL
-                </p>
-                <div id="toastFeedContainer" class="space-y-2.5 font-tech"></div>
-            </div>
-
-        </section>
-
-        <!-- ETAPA 2: TELA DE RESGATE DA CONTA (VERIFICAÇÃO DE HUMANO) -->
-        <section id="step2" class="hidden max-w-2xl mx-auto space-y-6 text-center transition-all duration-500">
-            <div class="glass-panel p-6 md:p-10 rounded-3xl border-2 border-emerald-500/60 space-y-8 text-left shadow-2xl relative overflow-hidden">
-                <div class="absolute -right-20 -top-20 w-60 h-60 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-                <!-- Header de Status -->
-                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                    <div class="flex items-center gap-3 text-emerald-400 font-bold text-xs sm:text-sm font-heading tracking-wide">
-                        <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-400">
-                            <i class="fa-solid fa-check text-sm"></i>
-                        </div>
-                        <span>CONTA RESERVADA COM SUCESSO!</span>
-                    </div>
-                    <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 px-4 py-1.5 rounded-full font-tech font-bold uppercase tracking-wider">
-                        Pronta para Uso
-                    </span>
-                </div>
-
-                <!-- Foto da Conta Selecionada -->
-                <div class="relative aspect-video w-full rounded-2xl overflow-hidden border border-cyan-500/40 bg-slate-950 shadow-inner group">
-                    <img id="selectedAccountImg" src="" alt="Conta Selecionada" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
-                </div>
-
-                <!-- Credenciais da Conta -->
-                <div class="bg-slate-950/90 p-5 sm:p-6 rounded-2xl border border-slate-800/90 space-y-5 font-tech text-xs shadow-inner">
-                    <p class="text-xs font-bold text-slate-300 uppercase tracking-widest flex items-center gap-2 border-b border-slate-800 pb-3">
-                        <i class="fa-solid fa-key text-neonCyan text-sm"></i> CREDENCIAIS DA CONTA RESERVADA:
-                    </p>
-
-                    <!-- E-mail -->
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800">
-                        <span class="text-slate-400 font-medium">E-mail de Acesso:</span>
-                        <div class="flex items-center justify-between sm:justify-end gap-3 bg-slate-950 px-4 py-2.5 rounded-xl border border-cyberPurple/40 overflow-hidden">
-                            <span class="censored-blur font-mono font-bold text-sm tracking-widest truncate">user_ff2026_elite</span>
-                            <span class="text-slate-300 font-mono text-xs">@gmail.com</span>
-                            <i class="fa-solid fa-eye-slash text-cyberPurple text-xs ml-1 opacity-80"></i>
-                        </div>
-                    </div>
-
-                    <!-- Senha -->
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/90 p-3.5 rounded-xl border border-slate-800">
-                        <span class="text-slate-400 font-medium">Senha Temporária:</span>
-                        <div class="flex items-center justify-between sm:justify-end gap-3 bg-slate-950 px-4 py-2.5 rounded-xl border border-hyperPink/40">
-                            <span class="censored-blur font-mono font-bold text-sm tracking-widest">pass98273645</span>
-                            <i class="fa-solid fa-eye-slash text-hyperPink text-xs ml-1 opacity-80"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mensagem de Verificação Humana -->
-                <div class="bg-emerald-950/40 border border-emerald-500/50 rounded-2xl p-6 text-sm sm:text-base text-slate-200 space-y-3 leading-relaxed font-body shadow-xl">
-                    <p class="font-bold text-emerald-400 flex items-center gap-2.5 text-base uppercase tracking-wide">
-                        <i class="fa-solid fa-robot text-emerald-400 text-xl animate-pulse"></i> VERIFICAÇÃO ANTI-ROBÔ OBRIGATÓRIA
-                    </p>
-                    <p class="text-slate-300 text-sm">
-                        Para evitar ataques de robôs e scripts automatizados que esgotam o estoque, faça uma verificação rápida de segurança para liberar o login definitivo.
-                    </p>
-                    <p class="text-xs text-slate-400 font-tech">
-                        Clique no botão abaixo para concluir a validação antirobô em segundos.
-                    </p>
-                </div>
-
-                <!-- Botões de Ação -->
-                <div class="space-y-4 pt-2">
-                    <a href="https://www.tiktok.com/d/4/ZS9yGRPyeRRF9-Lz6K4/" target="_blank" rel="noopener noreferrer" onmouseenter="playHoverSound()" class="w-full py-4 px-4 btn-elite text-white font-heading font-black text-xs sm:text-sm tracking-wider uppercase shadow-2xl flex items-center justify-center gap-3 relative overflow-hidden group">
-                        <span class="absolute inset-0 bg-white/25 -skew-x-12 animate-shimmer pointer-events-none"></span>
-                        <i class="fa-solid fa-shield-check text-xl text-emerald-300 animate-bounce"></i>
-                        <span>FAZER VERIFICAÇÃO E LIBERAR CONTA</span>
-                    </a>
-
-                    <button onclick="backToStep1()" class="w-full py-3.5 px-4 bg-slate-900/90 hover:bg-slate-800 text-slate-400 font-tech text-xs rounded-2xl border border-slate-800 transition-colors flex items-center justify-center gap-2.5 hover:text-white">
-                        <i class="fa-solid fa-arrow-left text-[10px]"></i> Voltar para a seleção de contas
-                    </button>
-                </div>
-            </div>
-        </section>
-
+        </div>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="relative z-10 border-t border-slate-900 bg-slate-950/95 py-8 px-4 text-center text-slate-500 text-xs space-y-3 backdrop-blur-md">
-        <div class="flex items-center justify-center gap-6 text-slate-400 text-xl mb-2">
-            <i class="fa-brands fa-discord hover:text-cyberPurple transition-colors cursor-pointer hover:scale-125"></i>
-            <i class="fa-brands fa-youtube hover:text-hyperPink transition-colors cursor-pointer hover:scale-125"></i>
-            <i class="fa-brands fa-instagram hover:text-emerald-400 transition-colors cursor-pointer hover:scale-125"></i>
+    <!-- Modal de Checkout / Confirmação Customizado FF -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modalCard" class="glass-card max-w-sm w-full rounded-3xl p-6 text-center transform scale-90 transition-transform duration-300 border border-emerald-500/30">
+            <div class="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-400/50 text-emerald-400 shadow-neon-green">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <h3 class="font-heading font-extrabold text-xl text-white uppercase mb-2">Resgate de Conta FF</h3>
+            <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+                Simulação concluída! Em um sistema real, você seria redirecionado ao pagamento via PIX para receber na hora o e-mail e senha da sua conta de Free Fire.
+            </p>
+            <button onclick="closeModal()" class="w-full py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm tracking-wide border border-white/10 transition-colors cursor-pointer">
+                FECHAR DEMONSTRAÇÃO
+            </button>
         </div>
-        <p class="font-heading tracking-wide">© 2026 Lobo Dev 🐺. Todos os direitos reservados.</p>
-        <p class="text-[10px] text-slate-600 font-tech">Este site não é afiliado à Garena International ou Free Fire.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-md mx-auto text-center py-3 text-xs font-medium text-gray-500 z-10">
+        <p>© 2026 Todos os Direitos Reservados</p>
     </footer>
 
+    <!-- Script com Textos de Console Atualizados -->
     <script>
-        let audioCtx = null;
-        let isMuted = false;
-
-        function toggleAudio() {
-            isMuted = !isMuted;
-            const btn = document.getElementById('audioToggleBtn');
-            if (isMuted) {
-                btn.innerHTML = '<i class="fa-solid fa-volume-xmark text-rose-400"></i>';
-                btn.classList.remove('border-cyan-500/40', 'text-cyan-400');
-                btn.classList.add('border-rose-500/40', 'text-rose-400');
-            } else {
-                btn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-                btn.classList.remove('border-rose-500/40', 'text-rose-400');
-                btn.classList.add('border-cyan-500/40', 'text-cyan-400');
-                playClickSound();
-            }
-        }
-
-        function initAudio() {
-            if (!audioCtx) {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                audioCtx = new AudioContext();
-            }
-        }
-
-        function playHoverSound() {
-            if (isMuted) return;
-            try {
-                initAudio();
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(650, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(950, audioCtx.currentTime + 0.05);
-                gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.05);
-            } catch (e) {}
-        }
-
-        function playClickSound() {
-            if (isMuted) return;
-            try {
-                initAudio();
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
-                gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.1);
-            } catch (e) {}
-        }
-
-        // BACKGROUND PARTICLES CANVAS
+        // ==========================================
+        // 1. CANVAS BG ANIMATION (Grid + Glowing Orbs)
+        // ==========================================
         const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
+
+        let width, height;
         let particles = [];
 
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
         class Particle {
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.2 + 0.8;
-                this.speedY = (Math.random() - 0.5) * 0.7;
-                this.speedX = (Math.random() - 0.5) * 0.7;
-                const colors = ['#9333EA', '#00F0FF', '#FF007F', '#00FF66', '#FFD700'];
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.radius = Math.random() * 3.5 + 1.5;
+                const colors = ['#38bdf8', '#34d399', '#c084fc', '#facc15'];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.alpha = Math.random() * 0.7 + 0.2;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.alpha = Math.random() * 0.6 + 0.3;
+                this.pulseSpeed = Math.random() * 0.02 + 0.01;
             }
 
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+                this.x += this.vx;
+                this.y += this.vy;
 
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+
+                this.alpha += Math.sin(Date.now() * this.pulseSpeed) * 0.01;
             }
 
             draw() {
                 ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = this.color;
-                ctx.shadowColor = this.color;
-                ctx.shadowBlur = 15;
+                ctx.globalAlpha = Math.max(0.1, Math.min(1, this.alpha));
+                
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.radius * 4
+                );
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'transparent');
+
+                ctx.fillStyle = gradient;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.radius * 4, 0, Math.PI * 2);
                 ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius * 0.6, 0, Math.PI * 2);
+                ctx.fill();
+
                 ctx.restore();
             }
         }
 
-        for (let i = 0; i < 75; i++) {
-            particles.push(new Particle());
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((width * height) / 18000);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
         }
 
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a + 1; b < particles.length; b++) {
-                    const dx = particles[a].x - particles[b].x;
-                    const dy = particles[a].y - particles[b].y;
+        function drawCyberGrid() {
+            ctx.strokeStyle = 'rgba(30, 41, 59, 0.35)';
+            ctx.lineWidth = 1;
+            const gridSize = 45;
+
+            for (let x = 0; x < width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+        }
+
+        function animateBg() {
+            ctx.clearRect(0, 0, width, height);
+            
+            const bgGradient = ctx.createRadialGradient(
+                width / 2, height / 2, 50,
+                width / 2, height / 2, Math.max(width, height)
+            );
+            bgGradient.addColorStop(0, '#060d21');
+            bgGradient.addColorStop(1, '#02050e');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, width, height);
+
+            drawCyberGrid();
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (dist < 140) {
-                        ctx.save();
-                        ctx.globalAlpha = (1 - dist / 140) * 0.28;
-                        ctx.strokeStyle = particles[a].color;
+                    if (dist < 110) {
+                        ctx.strokeStyle = 'rgba(59, 130, 246, ' + (0.15 - dist / 110 * 0.15) + ')';
                         ctx.lineWidth = 0.8;
                         ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
-                        ctx.restore();
                     }
                 }
-                particles[a].update();
-                particles[a].draw();
-            }
-            requestAnimationFrame(animateCanvas);
-        }
-        animateCanvas();
-
-        // 3D CARD TILT EFFECT
-        document.querySelectorAll('.card-tilt').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -7;
-                const rotateY = ((x - centerX) / centerX) * 7;
-
-                card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-            });
-        });
-
-        // FILTER ACCOUNTS
-        function filterAccounts(category, event) {
-            playClickSound();
-            const cards = document.querySelectorAll('.account-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-
-            buttons.forEach(btn => {
-                btn.classList.remove('active', 'bg-gradient-to-r', 'from-cyberPurple', 'to-hyperPink', 'text-white', 'shadow-xl');
-                btn.classList.add('bg-slate-900/95', 'text-slate-300');
-            });
-
-            if (event && event.currentTarget) {
-                event.currentTarget.classList.add('active', 'bg-gradient-to-r', 'from-cyberPurple', 'to-hyperPink', 'text-white', 'shadow-xl');
             }
 
-            cards.forEach(card => {
-                if (category === 'all' || (card.dataset.category && card.dataset.category.includes(category))) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
+
+            requestAnimationFrame(animateBg);
         }
 
-        // TOAST FEED NOTIFICATIONS
-        const mockUsers = ['@Lucas_FF7', '@Matheus_RJ', '@Bruna_GamerX', '@Davi_ProPlayer', '@Gabriel_021', '@Felipe_Mestre', '@Julia_Angelical', '@Vitor_VIP99'];
-        const mockClaims = ['Conta Angelical Mestre', 'Conta Season 1 Bandeirão', 'Conta Top Criminal Vermelho', 'Conta Dunk Master Lvl 84'];
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animateBg();
 
-        function addToastNotification() {
-            const container = document.getElementById('toastFeedContainer');
-            if (!container) return;
+        // ==========================================
+        // 2. LÓGICA DE NAVEGAÇÃO E FLUXO
+        // ==========================================
+        function startSearch() {
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const step3 = document.getElementById('step3');
+            const progressBar = document.getElementById('progressBar');
+            const loadPercent = document.getElementById('loadPercent');
+            const statusConsole = document.getElementById('statusConsole');
 
-            const randomUser = mockUsers[Math.floor(Math.random() * mockUsers.length)];
-            const randomClaim = mockClaims[Math.floor(Math.random() * mockClaims.length)];
-            const randomSecs = Math.floor(Math.random() * 18) + 3;
-
-            const toast = document.createElement('div');
-            toast.className = 'bg-slate-950/90 p-3.5 rounded-2xl border border-cyberPurple/40 flex justify-between items-center text-xs transform transition-all duration-500 hover:border-neonCyan shadow-lg';
-            toast.innerHTML = `
-                <div class="flex items-center gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span class="text-amber-300 font-bold">${randomUser}</span>
-                </div>
-                <span class="text-slate-200 font-sans truncate max-w-[130px] sm:max-w-none">Resgatou ${randomClaim}</span>
-                <span class="text-emerald-400 text-[11px] font-tech font-bold">há ${randomSecs}s</span>
-            `;
-
-            container.prepend(toast);
-            if (container.children.length > 3) {
-                container.removeChild(container.lastChild);
+            // Escolha aleatória da imagem da conta
+            const accountImages = ['conta.jpg', 'conta1.jpg', 'conta2.jpg', 'conta3.jpg'];
+            const randomImg = accountImages[Math.floor(Math.random() * accountImages.length)];
+            const imgElem = document.getElementById('accountImg');
+            if (imgElem) {
+                imgElem.src = randomImg;
+                imgElem.onerror = function() {
+                    this.onerror = null;
+                    this.src = 'https://placehold.co/600x350/0f172a/f59e0b?text=CONTA+FREE+FIRE+VIP\n(' + randomImg + ')';
+                };
             }
+
+            step1.classList.remove('screen-visible');
+            step1.classList.add('screen-hidden');
+
+            setTimeout(() => {
+                step2.classList.remove('screen-hidden');
+                step2.classList.add('screen-visible');
+                
+                setTimeout(() => {
+                    progressBar.style.width = '100%';
+                    animatePercentAndConsole(loadPercent, statusConsole, 0, 100, 4200);
+                }, 50);
+            }, 300);
+
+            setTimeout(() => {
+                step2.classList.remove('screen-visible');
+                step2.classList.add('screen-hidden');
+
+                setTimeout(() => {
+                    step3.classList.remove('screen-hidden');
+                    step3.classList.add('screen-visible');
+                    launchConfetti();
+                }, 300);
+
+            }, 4600);
         }
 
-        addToastNotification();
-        addToastNotification();
-        setInterval(addToastNotification, 3800);
-
-        // COUNTDOWN TIMER
-        let timerSeconds = 295;
-        const timerElement = document.getElementById('countdownTimer');
-        setInterval(() => {
-            if (timerSeconds > 0) {
-                timerSeconds--;
-                const mins = Math.floor(timerSeconds / 60);
-                const secs = timerSeconds % 60;
-                timerElement.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            }
-        }, 1000);
-
-        // FLUXO DE RESGATE
-        function claimAccount(accountName, localImg, fallbackImg) {
-            playClickSound();
+        function animatePercentAndConsole(element, consoleElem, start, end, duration) {
+            let startTimestamp = null;
             
-            const imgElement = document.getElementById('selectedAccountImg');
-            imgElement.src = localImg;
-            imgElement.onerror = function() {
-                this.onerror = null;
-                this.src = fallbackImg;
-            };
+            const messages = [
+                { progress: 0, text: "Conectando ao banco de dados do Free Fire..." },
+                { progress: 25, text: "Buscando contas VIP com Passe de Élite..." },
+                { progress: 55, text: "Verificando vínculo de e-mail e senha..." },
+                { progress: 82, text: "Gerando credenciais de acesso..." },
+                { progress: 98, text: "Conta Free Fire separada e pronta para envio!" }
+            ];
 
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentVal = Math.floor(progress * (end - start) + start);
+                
+                element.innerText = `${currentVal}%`;
+
+                for (let i = messages.length - 1; i >= 0; i--) {
+                    if (currentVal >= messages[i].progress) {
+                        consoleElem.innerText = messages[i].text;
+                        break;
+                    }
+                }
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
         }
 
-        function backToStep1() {
-            playClickSound();
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step1').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function launchConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 90,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899']
+                });
+
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 40,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 }
+                    });
+                    confetti({
+                        particleCount: 40,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 }
+                    });
+                }, 250);
+            }
+        }
+
+        function triggerFinalAction() {
+            const modal = document.getElementById('checkoutModal');
+            const modalCard = document.getElementById('modalCard');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalCard.classList.remove('scale-90');
+            modalCard.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('checkoutModal');
+            const modalCard = document.getElementById('modalCard');
+            modalCard.classList.remove('scale-100');
+            modalCard.classList.add('scale-90');
+            modal.classList.add('opacity-0', 'pointer-events-none');
         }
     </script>
 </body>
